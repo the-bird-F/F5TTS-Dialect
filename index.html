@@ -2,50 +2,213 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>方言语音合成展示</title>
+  <title>四川方言语音合成实验展示</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
+      font-family: "Noto Sans SC", sans-serif;
+      max-width: 900px;
       margin: 0 auto;
       padding: 2em;
-      background-color: #f9f9f9;
+      background-color: #f4f4f4;
+      line-height: 1.6;
     }
-    h1 {
-      color: #333;
-      text-align: center;
+    h1, h2, h3 {
+      color: #2c3e50;
     }
     .audio-box {
       background: #fff;
       padding: 1em;
       margin: 1em 0;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-    .audio-box p {
-      margin: 0 0 0.5em;
-      font-weight: bold;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5em;
+      text-align: center;
+    }
+    th {
+      background: #f2f2f2;
     }
   </style>
 </head>
 <body>
-  <h1>四川方言语音合成展示</h1>
 
+  <h1>四川方言语音合成实验展示</h1>
+
+  <h2>一、实验设置与测评方式</h2>
+  <p><strong>参考文本（普通话）</strong>：这是参考录音，用于合成语音。</p>
   <div class="audio-box">
-    <p>样例 1：自我介绍（NFE=25）</p>
+    <p>参考音频播放：</p>
     <audio controls>
-      <source src="myself_dialect/samplex1.wav" type="audio/wav">
+      <source src="myself.wav" type="audio/wav">
       您的浏览器不支持音频播放。
     </audio>
   </div>
 
+  <p><strong>测试文本</strong>：大家好，我是凤鹏超，来自上海交通大学电子信息与电气工程学院二零二二级人工智能班。我迷恋乒乓飞舞的韵律、楚河汉界的玄机，更爱执笔绘就丹青、行至山河万里。虽然我不会说四川话，但是我正在说四川话。你们觉得我说的像不像呢？</p>
+
+  <p>本实验邀请两位四川籍同学进行主观测评，测评方式为 5 分制。维度包括：</p>
+  <ul>
+    <li><strong>语音合成质量（Quality）</strong>：流畅度、错误率、停顿自然性</li>
+    <li><strong>方言味（DialectSense）</strong>：是否贴合方言、发音是否地道</li>
+  </ul>
+
+  <h2>二、不同 NFE 设置下合成效果</h2>
+
   <div class="audio-box">
-    <p>样例 2：自我介绍（NFE=100）</p>
+    <p>不同 NFE 合成语音样例：</p>
+    <p>NFE = 16：</p>
     <audio controls>
-      <source src="myself_dialect/samplex2.wav" type="audio/wav">
-      您的浏览器不支持音频播放。
+      <source src="myself_sichuan/nfe/myself_sichuan_n16.wav" type="audio/wav">
+    </audio>
+
+    <p>NFE = 32：</p>
+    <audio controls>
+      <source src="myself_sichuan/nfe/myself_sichuan_n32.wav" type="audio/wav">
+    </audio>
+
+    <p>NFE = 48：</p>
+    <audio controls>
+      <source src="myself_sichuan/nfe/myself_sichuan_n48.wav" type="audio/wav">
+    </audio>
+
+    <p>NFE = 64：</p>
+    <audio controls>
+      <source src="myself_sichuan/nfe/myself_sichuan_n64.wav" type="audio/wav">
     </audio>
   </div>
+
+  <table>
+    <caption><strong>表 1：不同 NFE 下语音合成性能与效率对比</strong></caption>
+    <thead>
+      <tr>
+        <th>NFE</th>
+        <th>Time (s)</th>
+        <th>Quality</th>
+        <th>DialectSense</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>16</td><td>5.46</td><td>3</td><td>4.5</td></tr>
+      <tr><td>32</td><td>7.53</td><td>4</td><td>4.5</td></tr>
+      <tr><td>48</td><td>8.79</td><td>4.5</td><td>4.5</td></tr>
+      <tr><td>64</td><td>12.03</td><td>4</td><td>4.5</td></tr>
+    </tbody>
+  </table>
+
+  <h2>三、消融实验（任务向量增强与微调步数）</h2>
+
+  <div class="audio-box">
+    <p>消融实验语音样例对应如下：</p>
+    <ol>
+      <li>x1：FT = 0，α = 1</li>
+      <li>x2：FT = 60k，α = 1</li>
+      <li>x3：FT = 60k，α = 2+</li>
+      <li>x4：FT = 60k，α = 3+</li>
+      <li>x5：FT = 80k，α = 1</li>
+      <li>x6：FT = 80k，α = 2+</li>
+      <li>x7：FT = 80k，α = 3+</li>
+      <li>x8：FT = 100k，α = 1</li>
+      <li>x9：FT = 100k，α = 2+</li>
+      <li>x10：FT = 100k，α = 3+</li>
+    </ol>
+
+    <!-- 循环播放10个音频 -->
+    <p>样例音频播放：</p>
+    <ol>
+      <li>
+        x1：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x1.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x2：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x2.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x3：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x3.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x4：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x4.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x5：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x5.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x6：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x6.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x7：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x7.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x8：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x8.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x9：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x9.wav" type="audio/wav">
+        </audio>
+      </li>
+      <li>
+        x10：
+        <audio controls>
+          <source src="myself_sichuan/multi/myself_sichuan_x10.wav" type="audio/wav">
+        </audio>
+      </li>
+    </ol>
+  </div>
+
+  <table>
+    <caption><strong>表 2：不同微调步数与任务向量增强设置对比结果</strong></caption>
+    <thead>
+      <tr>
+        <th>FT</th>
+        <th>α (Enhance)</th>
+        <th>Quality</th>
+        <th>DialectSense</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0</td><td>1</td><td>4</td><td>1</td></tr>
+      <tr><td>60k</td><td>1</td><td>4</td><td>1.5</td></tr>
+      <tr><td>60k</td><td>2+</td><td>4</td><td>4</td></tr>
+      <tr><td>60k</td><td>3+</td><td>4</td><td>4.5</td></tr>
+      <tr><td>80k</td><td>1</td><td>4</td><td>3.5</td></tr>
+      <tr><td>80k</td><td>2+</td><td>3</td><td>3.5</td></tr>
+      <tr><td>80k</td><td>3+</td><td>2.5</td><td>4</td></tr>
+      <tr><td>100k</td><td>1</td><td>3</td><td>2</td></tr>
+      <tr><td>100k</td><td>2+</td><td>3.5</td><td>3.5</td></tr>
+      <tr><td>100k</td><td>3+</td><td>1</td><td>2.5</td></tr>
+    </tbody>
+  </table>
 
 </body>
 </html>

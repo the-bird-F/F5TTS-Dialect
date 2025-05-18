@@ -36,6 +36,49 @@
     th {
       background: #f2f2f2;
     }
+    
+    .audio-row {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .audio-label {
+      width: 50px;
+      text-align: right;
+    }
+
+    .audio-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .audio-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    .audio-group .audio-block {
+      background: #fff;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .audio-group .audio-label {
+      width: 24px;
+      text-align: right;
+      white-space: nowrap; /* 防止换行 */
+    }
+    
+    .audio-info {
+      min-width: 180px;
+      font-family: monospace;
+    }
   </style>
 </head>
 <body>
@@ -125,97 +168,114 @@
       <tr><td>100k</td><td>3+</td><td>1</td><td>2.5</td></tr>
     </tbody>
   </table>
-  <div class="audio-box">
-    <p>对应10个样例音频播放：</p>
-    <ol>
-      <li>
-        ref
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x1.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x2.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x3.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x4.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x5.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x6.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x7.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x8.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x9.wav" type="audio/wav">
-        </audio>
-      </li>
-      <li>
-        <audio controls>
-          <source src="myself_sichuan/multi/myself_sichuan_x10.wav" type="audio/wav">
-        </audio>
-      </li>
-    </ol>
+  
+  <!-- 第一条参考语音 -->
+  <div class="audio-group">
+    <div class="audio-block">
+      <div class="audio-label">1. base model</div>
+      <audio controls src="myself_sichuan/multi/myself_sichuan_x1.wav"></audio>
+    </div>
   </div>
+
+  <!-- 后面每 3 个音频为一组 -->
+  <div class="audio-container">
+    <div class="audio-group">
+      <div class="audio-block">
+        <div class="audio-label">2.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x2.wav"></audio>
+      </div>
+      <div class="audio-block">
+        <div class="audio-label">3.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x3.wav"></audio>
+      </div>
+      <div class="audio-block">
+        <div class="audio-label">4.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x4.wav"></audio>
+      </div>
+    </div>
+
+    <div class="audio-group">
+      <div class="audio-block">
+        <div class="audio-label">5.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x5.wav"></audio>
+      </div>
+      <div class="audio-block">
+        <div class="audio-label">6.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x6.wav"></audio>
+      </div>
+      <div class="audio-block">
+        <div class="audio-label">7.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x7.wav"></audio>
+      </div>
+    </div>
+
+    <div class="audio-group">
+      <div class="audio-block">
+        <div class="audio-label">8.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x8.wav"></audio>
+      </div>
+      <div class="audio-block">
+        <div class="audio-label">9.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x9.wav"></audio>
+      </div>
+      <div class="audio-block">
+        <div class="audio-label">10.</div>
+        <audio controls src="myself_sichuan/multi/myself_sichuan_x10.wav"></audio>
+      </div>
+    </div>
+  </div>
+
   <h2>四、其他方言展示（微调与增强方式与四川方言相同）</h2>
-  <div class="audio-box">
-    <p>上海方言展示：</p>
-    <ol>
-      <li> FT=60k, α=1, nfe=32
+
+  <div class="audio-container">
+    <p><strong>上海方言展示：</strong></p>
+  
+    <div class="audio-group">
+      <div class="audio-block">
+        <div class="audio-label">1. FT=60k, α=1, nfe=32</div>
         <audio controls>
           <source src="myself_shanghai/multi/myself_shanghai_x2.wav" type="audio/wav">
         </audio>
-      </li>
-      <li> FT=60k, α=2+, nfe=32
+      </div>
+  
+      <div class="audio-block">
+        <div class="audio-label">2. FT=60k, α=2+, nfe=32</div>
         <audio controls>
           <source src="myself_shanghai/multi/myself_shanghai_x3.wav" type="audio/wav">
         </audio>
-      </li>
-      <li> FT=60k, α=3+, nfe=32
+      </div>
+  
+      <div class="audio-block">
+        <div class="audio-label">3. FT=60k, α=3+, nfe=32</div>
         <audio controls>
           <source src="myself_shanghai/multi/myself_shanghai_x4.wav" type="audio/wav">
         </audio>
-      </li>
-      <li> FT=80k, α=1, nfe=32
+      </div>
+    </div>
+  
+    <div class="audio-group">
+      <div class="audio-block">
+        <div class="audio-label">4. FT=80k, α=1, nfe=32</div>
         <audio controls>
           <source src="myself_shanghai/multi/myself_shanghai_x5.wav" type="audio/wav">
         </audio>
-      </li>
-      <li> FT=80k, α=2+, nfe=32
+      </div>
+  
+      <div class="audio-block">
+        <div class="audio-label">5. FT=80k, α=2+, nfe=32</div>
         <audio controls>
           <source src="myself_shanghai/multi/myself_shanghai_x6.wav" type="audio/wav">
         </audio>
-      </li>
-      <li> FT=80k, α=3+, nfe=32
+      </div>
+  
+      <div class="audio-block">
+        <div class="audio-label">6. FT=80k, α=3+, nfe=32</div>
         <audio controls>
           <source src="myself_shanghai/multi/myself_shanghai_x7.wav" type="audio/wav">
         </audio>
-      </li>
-    </ol>
+      </div>
+    </div>
   </div>
+
 </body>
 </html>

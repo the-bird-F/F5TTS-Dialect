@@ -7,7 +7,7 @@
 ## 🔧 文件结构说明
 
 ```bash
-myself_dialect/
+F5TTS-Dialect/
 ├── index.html # 实验展示网页
 ├── myself.wav # 普通话参考音频（源语音）
 ├── myself_shanghai/ # 上海话语音合成结果

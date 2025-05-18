@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>方言语音合成展示</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2em;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .audio-box {
+      background: #fff;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .audio-box p {
+      margin: 0 0 0.5em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>四川方言语音合成展示</h1>
+
+  <div class="audio-box">
+    <p>样例 1：自我介绍（NFE=25）</p>
+    <audio controls>
+      <source src="myself_dialect/samplex1.wav" type="audio/wav">
+      您的浏览器不支持音频播放。
+    </audio>
+  </div>
+
+  <div class="audio-box">
+    <p>样例 2：自我介绍（NFE=100）</p>
+    <audio controls>
+      <source src="myself_dialect/samplex2.wav" type="audio/wav">
+      您的浏览器不支持音频播放。
+    </audio>
+  </div>
+
+</body>
+</html>

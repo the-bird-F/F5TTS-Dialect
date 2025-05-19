@@ -28,8 +28,8 @@ F5TTS-Dialect/
 
 ## 📢 浏览网页
 
-你可以将整个文件夹上传至 GitHub，并通过 GitHub Pages [在线展示](https://the-bird-f.github.io/F5TTS-Dialect/)
+方言语音合成 GitHub Pages [在线展示](https://the-bird-f.github.io/F5TTS-Dialect/)
 
 ---
 
-如需更多帮助或添加打分功能、交互式统计等扩展功能，欢迎继续交流！
+本项目为上海交通大学人工智能专业《智能感知综合实践》课程项目，根据 MIT License 授权。
